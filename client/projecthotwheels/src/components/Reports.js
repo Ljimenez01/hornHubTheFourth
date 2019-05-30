@@ -10,17 +10,19 @@ constructor() {
     reports: [],
     plate:'',
     state:'',
-    email:''
+    email:'',
+    
   }
 }
 
-componentDidMount() {
-  this.populateAllReports ()
+
+  componentDidMount(){
+      this.populateAllReports ()
+
+  }
 
 
 
-
-}
 //the function below will display on our React page the items entered
 populateAllReports = () => {
 
@@ -50,7 +52,7 @@ handleSaveClick = () => {
     body:JSON.stringify({
       plate:this.state.plate,
       state:this.state.state,
-      email:this.state.email
+      email:this.state.email,
     })
   }).then(response => response.json())
     .then(result => {
