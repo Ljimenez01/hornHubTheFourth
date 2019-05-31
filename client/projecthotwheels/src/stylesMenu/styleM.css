@@ -1,0 +1,42 @@
+.logo1 {
+  height: auto;
+  width: 13%;
+
+}
+
+.colour {
+  background-color: black;
+}
+
+#basic-navbar-nav {
+
+}
+
+
+.menColor {
+  color: white;
+  padding-left: 80px;
+
+
+}
+
+.mr-auto {
+  font-size: 17px;
+  line-height: 22px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  trasition: 0.3;
+}
+
+.mainRep {
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+
+}
+
+.mkRep {
+  margin-bottom: 5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
