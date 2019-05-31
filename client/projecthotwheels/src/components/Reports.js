@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import '../stylesMenu/styleM.css'
 
 export class Reports extends Component {
 
@@ -11,7 +11,7 @@ constructor() {
     plate:'',
     state:'',
     email:'',
-    
+
   }
 }
 
@@ -29,8 +29,11 @@ populateAllReports = () => {
   fetch('http://localhost:8000/api/reports')
   .then(response => response.json())
   .then(json => {
+    console.log('json', json)
     this.setState({
-      reports: json
+      reports: json.sort((function(a, b){
+        return new Date(b.createdAt) - new Date(a.createdAt)
+      }))
     })
   })
 }
@@ -88,13 +91,16 @@ render() {
     )
   })
   return(
-    <div>
-    <h1>HornHub</h1>
-     <input onChange ={this.handleTextchange} placeholder ="Enter License Plate"type ="text" name="plate"/>
-      <input onChange ={this.handleTextchange}placeholder ="Enter State"type ="text" name="state"/>
-      <input onChange ={this.handleTextchange}placeholder ="Email"type ="text" name="email"/>
-      <button onClick={this.handleSaveClick}>Submit</button>
-    <ul>{reportItems}</ul>
+    <div className="mainRep">
+    <center><h1 className="mkRep">Make a report for your missing vehicle.</h1></center>
+        <center><div>
+          <input onChange ={this.handleTextchange} placeholder ="Enter License Plate"type ="text" name="plate"/>
+          <input onChange ={this.handleTextchange}placeholder ="Enter State"type ="text" name="state"/>
+          <input onChange ={this.handleTextchange}placeholder ="Email"type ="text" name="email"/>
+          <button onClick={this.handleSaveClick}>Submit</button>
+          {reportItems}
+    </div></center>
+
     </div>
 
   )

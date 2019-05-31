@@ -81,34 +81,36 @@ componentDidMount() {
     console.log(this.state)
 
     if((this.state.searchResults || this.state.searchResults === 0) && this.state.validInput) {
-      let email = "mailto:" + this.state.email
+
       let message = (<h3>This vehicle has not been reported as stolen.</h3>)
       if(this.state.searchResults !== 0){
+        let l = `https://www.latlong.net/c/?lat=${this.state.latitude}%26long=${this.state.longitude}`
+        let locationLink = "https://www.latlong.net/c/\?lat=" + this.state.latitude + "&long=" + this.state.longitude
+        let email = "mailto:" + this.state.email + "?subject=Your car has been spotted at the location below &body=" + l
+        console.log(email)
         message = (
         <div>
           <h3>This vehicle has been reported as stolen.</h3>
           <a href = {email} target = "_top">Send them an email</a>
-          <span>Vehicle coordinates: <span>latitude: {this.state.latitude}</span>
-          <span>longitude: {this.state.longitude}</span></span>
+          <span><a href = {locationLink} target = "_blank">Location</a></span>
         </div>
         )
       }
       return (
-          <div>
-            <h3>Sign In </h3>
+          <center><div className="mainRep">
 
-            <h3>Search if a vehicle has been reported</h3>
             <input onChange={this.handleTextchange} placeholder ="Enter License Plate"type ="text" name="plate"/>
             <input onChange={this.handleTextchange} placeholder ="Enter State"type="text" name="state"/>
             <button onClick={this.searchPlate}>Search</button>
             {message}
           </div>
+          </center>
       )
     }
     else {
       return(
-        <div>
-          <h3>Sign In </h3>
+        <center><div>
+          <h1 className = "mainRep1">Welcome </h1>
 
           <h3>Search if a vehicle has been reported</h3>
           <input onChange={this.handleTextchange} placeholder ="Enter License Plate"type ="text" name="plate"/>
@@ -116,6 +118,7 @@ componentDidMount() {
           <button onClick={this.searchPlate}>Search</button>
           {!this.state.validInput ? <p>License plate must be alphanumeric</p> : null}
         </div>
+        </center>
 
       )
     }
